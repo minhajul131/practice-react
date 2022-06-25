@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
   var names = ['Adul', 'jolla', 'Uddin',]
@@ -8,11 +9,27 @@ function App() {
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}  
       </header>
+      <MovieCounter></MovieCounter>
       <MyName name={names[2]}></MyName>
       <MyName name="Monoar"></MyName>
       <MyName name={names[1]}></MyName>
     </div>
   );
+}
+function MovieCounter(){
+  var [count, setCount] = useState(1)
+  const handelClick = () => setCount(count + 1);
+  return (
+    <div>
+      <h3>Number of Movies: {count}</h3>
+      <button onClick={handelClick}>Add Movies</button>
+      <DisplayMovie movies ={count}></DisplayMovie>
+      <DisplayMovie movies ={count+10}></DisplayMovie>
+    </div>
+  )
+}
+function DisplayMovie(props){
+  return <h4>Movies I saw : {props.movies}</h4>
 }
 
 function MyName (props){
