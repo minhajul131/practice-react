@@ -3,16 +3,16 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  var names = ['Adul', 'jolla', 'Uddin',]
+  var names = ['Adul', 'jolla', 'Uddin', 'suny']
   return (
     <div className="App">
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}  
       </header>
       <MovieCounter></MovieCounter>
-      <MyName name={names[2]}></MyName>
-      <MyName name="Monoar"></MyName>
-      <MyName name={names[1]}></MyName>
+      {
+        names.map(nm => <MyName name={nm}></MyName>)
+      }
     </div>
   );
 }
