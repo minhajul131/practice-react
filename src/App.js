@@ -1,18 +1,19 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 
 function App() {
-  var names = ['Adul', 'jolla', 'Uddin', 'suny']
+  var names = [{name: 'Adul', age: 25}, {name: 'Jolla', age: 75}, {name: 'Uddin', age: 29}, {name: 'Sunt', age: 45}]
   return (
     <div className="App">
+      
+      <MovieCounter></MovieCounter>
+      {
+        names.map(nm => <MyName name={nm.name} age = {nm.age}></MyName>)
+      }
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}  
       </header>
-      <MovieCounter></MovieCounter>
-      {
-        names.map(nm => <MyName name={nm}></MyName>)
-      }
     </div>
   );
 }
@@ -42,7 +43,7 @@ function MyName (props){
   return (
     <div style={nameStyle}>
       <h1>The man {props.name}</h1>
-      <h3>hero</h3>
+      <h3>Age {props.age} years.</h3>
     </div>
   )
 }
