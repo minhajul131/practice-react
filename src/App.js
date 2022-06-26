@@ -1,15 +1,23 @@
 // import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
-  var names = [{name: 'Adul', age: 25}, {name: 'Jolla', age: 75}, {name: 'Uddin', age: 29}, {name: 'Sunt', age: 45}]
+
+  const [names, setNames] = useState([])
+  useEffect(()=>{
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res=> res.json())
+    .then(data=>setNames(data))
+  },[])
+  
+  // var names = [{name: 'Adul', age: 25}, {name: 'Jolla', age: 75}, {name: 'Uddin', age: 29}, {name: 'Sunt', age: 45}]
   return (
     <div className="App">
       
       <MovieCounter></MovieCounter>
       {
-        names.map(nm => <MyName name={nm.name} age = {nm.age}></MyName>)
+        names.map(nm => <MyName name={nm.name} key={nm.id} website = {nm.website}></MyName>)
       }
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}  
@@ -42,8 +50,8 @@ function MyName (props){
   }
   return (
     <div style={nameStyle}>
-      <h1>The man {props.name}</h1>
-      <h3>Age {props.age} years.</h3>
+      <h1>Name: {props.name}</h1>
+      <h3>Website: {props.website} </h3>
     </div>
   )
 }
